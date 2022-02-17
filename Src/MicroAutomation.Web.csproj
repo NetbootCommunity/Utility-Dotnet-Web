@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Authors>Thomas ILLIET</Authors>
+    <Company>Netboot</Company>
+    <Product>MicroAutomation</Product>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <Description>Micro library for my automation utilities</Description>
+    <Authors>Thomas ILLIET</Authors>
+    <Copyright>Thomas ILLIET</Copyright>
+    <PackageIconUrl />
+    <PackageIcon>Logo.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/NetbootHome/MicroAutomation-Web</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/NetbootHome/MicroAutomation-Web/blob/main/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/NetbootHome/MicroAutomation-Web</RepositoryUrl>
+  </PropertyGroup>
+  
+  <ItemGroup>
+		<None Include="..\Assets\Logo.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MicroAutomation.Cache" Version="6.0.0" />
+    <PackageReference Include="MicroAutomation.Log" Version="6.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>
