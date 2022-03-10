@@ -28,7 +28,7 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MicroAutomation.Cache" Version="6.0.0" />
+    <PackageReference Include="MicroAutomation.Cache" Version="6.0.1" />
     <PackageReference Include="MicroAutomation.Log" Version="6.0.3" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="6.0.0" />
