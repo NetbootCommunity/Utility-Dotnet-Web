@@ -38,8 +38,8 @@ jobs:
     - name: Run SonarScanner
       uses: highbyte/sonarscan-dotnet@v2.1.2
       with:
-        sonarProjectKey: netboot_cache
-        sonarProjectName:  Netboot Cache
+        sonarProjectKey: netboot_web
+        sonarProjectName:  Netboot Web
         sonarHostname:  https://sonarqube.netboot.fr
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
