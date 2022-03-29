@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 
-namespace MicroAutomation.Web.Models;
-
-public class ServiceOption
+namespace MicroAutomation.Web.Models
 {
-    public AuthenticationType Authentication { get; set; }
-    public List<ServiceEndpointOption> Endpoints { get; set; }
-
-    public ServiceOption()
+    public class ServiceOption
     {
-        Authentication = AuthenticationType.Default;
-        Endpoints = new List<ServiceEndpointOption>()
+        public AuthenticationType Authentication { get; set; }
+        public List<ServiceEndpointOption> Endpoints { get; set; }
+
+        public ServiceOption()
+        {
+            Authentication = AuthenticationType.Default;
+            Endpoints = new List<ServiceEndpointOption>()
         {
             new ServiceEndpointOption()
             {
@@ -18,5 +18,6 @@ public class ServiceOption
                 Port = 5000
             }
         };
+        }
     }
 }

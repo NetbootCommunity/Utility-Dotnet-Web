@@ -1,33 +1,34 @@
 ﻿using System;
 
-namespace MicroAutomation.Web.Models;
-
-internal class Decorator<TService>
+namespace MicroAutomation.Web.Models
 {
-    public TService Instance { get; set; }
-
-    public Decorator(TService instance)
+    internal class Decorator<TService>
     {
-        Instance = instance;
-    }
-}
+        public TService Instance { get; set; }
 
-internal class Decorator<TService, TImpl> : Decorator<TService>
-    where TImpl : class, TService
-{
-    public Decorator(TImpl instance) : base(instance)
-    {
-    }
-}
-
-internal class DisposableDecorator<TService> : Decorator<TService>, IDisposable
-{
-    public DisposableDecorator(TService instance) : base(instance)
-    {
+        public Decorator(TService instance)
+        {
+            Instance = instance;
+        }
     }
 
-    public void Dispose()
+    internal class Decorator<TService, TImpl> : Decorator<TService>
+        where TImpl : class, TService
     {
-        (Instance as IDisposable)?.Dispose();
+        public Decorator(TImpl instance) : base(instance)
+        {
+        }
+    }
+
+    internal class DisposableDecorator<TService> : Decorator<TService>, IDisposable
+    {
+        public DisposableDecorator(TService instance) : base(instance)
+        {
+        }
+
+        public void Dispose()
+        {
+            (Instance as IDisposable)?.Dispose();
+        }
     }
 }

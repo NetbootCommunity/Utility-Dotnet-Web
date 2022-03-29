@@ -8,76 +8,77 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Netboot.Cache.Memory;
 
-namespace MicroAutomation.Web;
-
-public abstract class DefaultWebStartup
+namespace MicroAutomation.Web
 {
-    /// <summary>
-    /// Represents a set of key/value application configuration properties.
-    /// </summary>
-    public IConfiguration Configuration { get; }
-
-    /// <summary>
-    /// Default Constructor.
-    /// </summary>
-    protected DefaultWebStartup(IConfiguration configuration)
+    public abstract class DefaultWebStartup
     {
-        Configuration = configuration;
-    }
+        /// <summary>
+        /// Represents a set of key/value application configuration properties.
+        /// </summary>
+        public IConfiguration Configuration { get; }
 
-    /// <summary>
-    /// Configures services for the application.
-    /// </summary>
-    /// <param name="services">The collection of services to configure the application with.</param>
-    public virtual void ConfigureServices(IServiceCollection services)
-    {
-        // Configure HSTS
-        // The default HSTS value is 90 days.
-        // You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-        // https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?WT.mc_id=DT-MVP-5003978#http-strict-transport-security-protocol-hsts
-        // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
-        services.AddHsts();
+        /// <summary>
+        /// Default Constructor.
+        /// </summary>
+        protected DefaultWebStartup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
-        // Cors
-        services.AddCors();
-        services.AddTransientDecorator<ICorsPolicyProvider, CorsPolicyProvider>();
+        /// <summary>
+        /// Configures services for the application.
+        /// </summary>
+        /// <param name="services">The collection of services to configure the application with.</param>
+        public virtual void ConfigureServices(IServiceCollection services)
+        {
+            // Configure HSTS
+            // The default HSTS value is 90 days.
+            // You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            // https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?WT.mc_id=DT-MVP-5003978#http-strict-transport-security-protocol-hsts
+            // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
+            services.AddHsts();
 
-        // Configure distributed cache
-        services.AddTypedMemoryCache();
+            // Cors
+            services.AddCors();
+            services.AddTransientDecorator<ICorsPolicyProvider, CorsPolicyProvider>();
 
-        // Frameworks
-        services.AddHttpContextAccessor();
-    }
+            // Configure distributed cache
+            services.AddTypedMemoryCache();
 
-    /// <summary>
-    /// This method gets called by the runtime.
-    /// Use this method to configure the HTTP request pipeline.
-    /// </summary>
-    /// <param name="app"></param>
-    /// <param name="env"></param>
-    public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        // Apply minimal configuration.
-        MinimalConfigure(app, env);
-    }
+            // Frameworks
+            services.AddHttpContextAccessor();
+        }
 
-    /// <summary>
-    /// Method to apply a minimum configuration for the runtime.
-    /// </summary>
-    /// <param name="app"></param>
-    /// <param name="env"></param>
-    public void MinimalConfigure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        // Checks if the current host environment name is development.
-        if (env.IsDevelopment() || env.EnvironmentName == "LocalDevelopment")
-            app.UseDeveloperExceptionPage();
-        else
-            app.UseHsts();
+        /// <summary>
+        /// This method gets called by the runtime.
+        /// Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            // Apply minimal configuration.
+            MinimalConfigure(app, env);
+        }
 
-        // Adds a CORS middleware.
-        app.ConfigureCors(Configuration);
+        /// <summary>
+        /// Method to apply a minimum configuration for the runtime.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        public void MinimalConfigure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            // Checks if the current host environment name is development.
+            if (env.IsDevelopment() || env.EnvironmentName == "LocalDevelopment")
+                app.UseDeveloperExceptionPage();
+            else
+                app.UseHsts();
 
-        // Enables routing capabilities.
-        app.UseRouting();
+            // Adds a CORS middleware.
+            app.ConfigureCors(Configuration);
+
+            // Enables routing capabilities.
+            app.UseRouting();
+        }
     }
 }

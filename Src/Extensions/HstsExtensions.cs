@@ -2,21 +2,22 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace MicroAutomation.Web.Extensions;
-
-public static class HstsExtensions
+namespace MicroAutomation.Web.Extensions
 {
-    /// <summary>
-    /// Add HSTS service.
-    /// </summary>
-    /// <param name="services"></param>
-    public static void AddHsts(this IServiceCollection services)
+    public static class HstsExtensions
     {
-        services.AddHsts(options =>
+        /// <summary>
+        /// Add HSTS service.
+        /// </summary>
+        /// <param name="services"></param>
+        public static void AddHsts(this IServiceCollection services)
         {
-            options.MaxAge = TimeSpan.FromDays(90);
-            options.IncludeSubDomains = true;
-            options.Preload = true;
-        });
+            services.AddHsts(options =>
+            {
+                options.MaxAge = TimeSpan.FromDays(90);
+                options.IncludeSubDomains = true;
+                options.Preload = true;
+            });
+        }
     }
 }
