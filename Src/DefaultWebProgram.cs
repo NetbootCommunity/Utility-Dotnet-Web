@@ -1,8 +1,8 @@
-﻿using MicroAutomation.Log.Extensions;
-using MicroAutomation.Web.Extensions;
+﻿using MicroAutomation.Web.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Netboot.Logging.Extensions;
 using System;
 using System.Diagnostics;
 using System.IO;
