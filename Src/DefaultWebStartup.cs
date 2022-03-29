@@ -1,5 +1,4 @@
-﻿using MicroAutomation.Cache.Extensions;
-using MicroAutomation.Web.Extensions;
+﻿using MicroAutomation.Web.Extensions;
 using MicroAutomation.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -7,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Netboot.Cache.Memory;
 
 namespace MicroAutomation.Web;
 
@@ -43,7 +43,7 @@ public abstract class DefaultWebStartup
         services.AddTransientDecorator<ICorsPolicyProvider, CorsPolicyProvider>();
 
         // Configure distributed cache
-        services.AddDistributedCache(Configuration);
+        services.AddTypedMemoryCache();
 
         // Frameworks
         services.AddHttpContextAccessor();
