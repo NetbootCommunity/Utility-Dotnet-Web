@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.0" />
     <PackageReference Include="Netboot.Cache.Memory" Version="6.2.2" />
     <PackageReference Include="Netboot.Logging" Version="6.2.2" />
   </ItemGroup>
